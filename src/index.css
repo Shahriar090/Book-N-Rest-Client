@@ -15,3 +15,13 @@
 body {
   font-family: "Poppins", system-ui;
 }
+
+/* Hide scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for other browsers (Firefox) */
+body {
+  scrollbar-width: none; /* Firefox */
+}

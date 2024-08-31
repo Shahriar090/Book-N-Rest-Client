@@ -3,13 +3,13 @@ const HeroBanner = () => {
   return (
     <section>
       <div
-        className="relative w-full h-[600px] bg-no-repeat bg-cover bg-blue-500"
+        className="relative w-full h-[600px] bg-no-repeat bg-cover bg-white"
         style={{ backgroundImage: `url(${bannerImg})` }}
       >
         {/* overlay div */}
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
-        <div className="absolute top-[40%] sm:left-[25%] sm:right-[25%] transform translate(-50%, -50%)">
+        <div className="absolute top-[40%] sm:left-[20%] sm:right-[20%] transform translate(-50%, -50%)">
           <div className="flex flex-col gap-3">
             <h1 className="text-white text-3xl sm:text-5xl md:text-6xl text-center font-semibold">
               The Best Luxury Hotels

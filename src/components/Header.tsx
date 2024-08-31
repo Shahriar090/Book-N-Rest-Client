@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="w-full h-20 bg-blue-800 fixed top-0 right-0 left-0 z-50">
+    <header className="w-full h-20 bg-primary-color fixed top-0 right-0 left-0 z-50">
       <nav className="w-full h-full max-w-screen-xl mx-auto flex items-center justify-between px-2">
         <div className="logo">
           <Link to="/">

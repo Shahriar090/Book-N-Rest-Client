@@ -52,7 +52,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="btn hidden md:block">
-          <Link to="/sign-in">
+          <Link to="/login">
             <button className="px-8 py-2 text-primary-color font-semibold bg-primary-text rounded-md hover:bg-secondary-text">
               SignIn
             </button>

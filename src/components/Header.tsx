@@ -30,7 +30,7 @@ const Header = () => {
         <div>
           <ul
             className={`flex flex-col md:flex-row fixed left-0 text-center md:static z-[-1] md:z-auto w-full h-auto transition-all duration-500 ease-in-out gap-6 text-primary-text text-lg font-semibold bg-primary-color py-8 md:py-0 ${
-              isMobileMenuOpen ? "left-0" : "-left-[500px]"
+              isMobileMenuOpen ? "top-20" : "-top-[500px]"
             }`}
           >
             {navItems.map((item, index) => (

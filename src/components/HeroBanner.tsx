@@ -3,7 +3,7 @@ const HeroBanner = () => {
   return (
     <section>
       <div
-        className="relative w-full h-[600px] bg-no-repeat bg-cover bg-white"
+        className="relative w-full h-[600px] bg-no-repeat bg-cover bg-center bg-white"
         style={{ backgroundImage: `url(${bannerImg})` }}
       >
         {/* overlay div */}
@@ -11,10 +11,10 @@ const HeroBanner = () => {
 
         <div className="absolute top-[40%] sm:left-[20%] sm:right-[20%] transform translate(-50%, -50%)">
           <div className="flex flex-col gap-3">
-            <h1 className="text-primary-text text-3xl sm:text-5xl md:text-6xl text-center font-semibold uppercase tracking-wide">
+            <h1 className="text-primary-text text-2xl sm:text-4xl md:text-6xl text-center font-semibold uppercase sm:tracking-wide">
               The Best Luxury Hotels
             </h1>
-            <p className="text-primary-text font-medium text-lg text-center">
+            <p className="text-primary-text font-medium text-sm md:text-lg text-center">
               Discover Pure Luxury In Every Corner Of Our Hotel.Experience
               unparalleled elegance and comfort in our meticulously designed
               rooms, each offering a serene escape from the everyday. Indulge in

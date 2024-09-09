@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const navItems = [
+    { label: "Home", link: "/" },
+    { label: "Our Rooms", link: "/our-rooms" },
+    { label: "About Us", link: "/about-us" },
+    { label: "Contact", link: "/contact" },
+  ];
   return (
     <header className="w-full h-20 bg-primary-color fixed top-0 right-0 left-0 z-50">
       <nav className="w-full h-full max-w-screen-xl mx-auto flex items-center justify-between px-2">
@@ -15,18 +21,14 @@ const Header = () => {
         {/* nav options */}
         <div className="">
           <ul className="flex gap-6 text-primary-text text-lg font-semibold">
-            <li className="hover:text-secondary-text transition-all duration-300">
-              <Link to={"/"}>Home</Link>
-            </li>
-            <li className="hover:text-secondary-text transition-all duration-300">
-              <Link to={"/our-rooms"}>Our Rooms</Link>
-            </li>
-            <li className="hover:text-secondary-text transition-all duration-300">
-              <Link to={"/about-us"}>About Us</Link>
-            </li>
-            <li className="hover:text-secondary-text transition-all duration-300">
-              <Link to={"/contact"}>Contact</Link>
-            </li>
+            {navItems.map((item, index) => (
+              <li
+                className="hover:text-secondary-text transition-all duration-300"
+                key={index}
+              >
+                <Link to={item.link}>{item.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="btn">

@@ -1,14 +1,28 @@
 import { Button } from "@/components/ui/button";
-import Container from "../shared/Container";
 import { Input } from "@/components/ui/input";
+import Container from "@/shared/Container";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <section className="h-screen flex items-center justify-center bg-primary-text">
       <Container>
         <form>
-          <div className="form-items grid grid-cols-1 gap-4">
+          <div className="form-items grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="firstName">
+              <label htmlFor="first_Name" className="font-semibold text-black">
+                First Name*
+              </label>
+              <Input type="text" id="first_Name" className="border-black" />
+            </div>
+
+            <div className="lastName">
+              <label htmlFor="last_Name" className="font-semibold text-black">
+                Last Name*
+              </label>
+              <Input type="text" id="last_Name" className="border-black" />
+            </div>
+
             <div className="">
               <label htmlFor="email" className="font-semibold text-black">
                 Email*
@@ -28,15 +42,15 @@ const Login = () => {
               variant="default"
               className="px-8 py-5 text-primary-text font-semibold bg-primary-color"
             >
-              Login
+              Register
             </Button>
           </div>
         </form>
-        <div>
+        <div className="mt-4 sm:mt-0">
           <p className="text-sm text-black font-medium">
-            New Here?{" "}
-            <Link className="text-primary-color" to="/register">
-              Register First
+            Already Have An Account?{" "}
+            <Link className="text-primary-color" to="/login">
+              Login Here
             </Link>
           </p>
         </div>
@@ -45,4 +59,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

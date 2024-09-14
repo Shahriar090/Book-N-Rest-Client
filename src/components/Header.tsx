@@ -56,12 +56,12 @@ const Header = () => {
           </ul>
         </div>
         <div className="btn hidden md:block">
-          <Link to="/login">
+          <Link to="/register">
             <Button
               variant="secondary"
               className="px-8 py-4 text-primary-color font-semibold"
             >
-              Sign In
+              Sign Up
             </Button>
           </Link>
         </div>

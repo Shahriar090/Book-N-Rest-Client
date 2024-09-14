@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
+import { Button } from "./ui/button";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -44,18 +45,24 @@ const Header = () => {
 
             <div className="md:hidden">
               <Link to="/sign-in">
-                <button className="px-8 py-2 text-primary-color font-semibold bg-primary-text rounded-md hover:bg-secondary-text">
-                  SignIn
-                </button>
+                <Button
+                  variant="secondary"
+                  className="px-8 py-4 text-primary-color font-semibold"
+                >
+                  Sign In
+                </Button>
               </Link>
             </div>
           </ul>
         </div>
         <div className="btn hidden md:block">
           <Link to="/login">
-            <button className="px-8 py-2 text-primary-color font-semibold bg-primary-text rounded-md hover:bg-secondary-text">
-              SignIn
-            </button>
+            <Button
+              variant="secondary"
+              className="px-8 py-4 text-primary-color font-semibold"
+            >
+              Sign In
+            </Button>
           </Link>
         </div>
 

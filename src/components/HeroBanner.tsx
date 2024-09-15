@@ -22,9 +22,6 @@ const HeroBanner = () => {
               rooms, each offering a serene escape from the everyday.
             </p>
             <div className="flex justify-center">
-              {/* <button className="px-8 py-3 text-primary-color font-semibold bg-primary-text rounded-md hover:bg-secondary-text">
-                Book Now
-              </button> */}
               <Button
                 variant="secondary"
                 className="px-8 py-5 text-primary-color font-semibold"

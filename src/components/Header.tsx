@@ -44,7 +44,7 @@ const Header = () => {
             ))}
 
             <div className="md:hidden">
-              <Link to="/sign-in">
+              <Link to="/register">
                 <Button
                   variant="secondary"
                   className="px-8 py-4 text-primary-color font-semibold"

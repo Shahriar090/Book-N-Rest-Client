@@ -22,7 +22,6 @@ export const authSlice = createSlice({
   reducers: {
     userRegister: (state, action) => {
       const { user } = action.payload;
-      console.log("User from slice", user);
       state.user = user;
     },
 
@@ -31,6 +30,7 @@ export const authSlice = createSlice({
       state.user = user;
       state.token = token;
       state.refreshToken = refreshToken;
+      console.log(user, token, refreshToken, "From login reducer");
     },
 
     userLogout: (state) => {

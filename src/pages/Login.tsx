@@ -20,9 +20,9 @@ const Login = () => {
     };
 
     try {
-      const response = await loginUser(userInfo);
-      const { user, accessToken, refreshToken } = response.data?.data || {};
-      // console.log(user, accessToken, refreshToken);
+      const response = await loginUser(userInfo).unwrap();
+      const { user, accessToken, refreshToken } = response?.data || {};
+      // console.log(response?.data);
       if (user && accessToken && refreshToken) {
         dispatch(userLogin({ user, token: accessToken, refreshToken }));
       } else {

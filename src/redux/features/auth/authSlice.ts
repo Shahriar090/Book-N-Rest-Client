@@ -30,7 +30,6 @@ export const authSlice = createSlice({
       state.user = user;
       state.token = token;
       state.refreshToken = refreshToken;
-      console.log(user, token, refreshToken, "From login reducer");
     },
 
     userLogout: (state) => {

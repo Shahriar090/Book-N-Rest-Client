@@ -6,13 +6,13 @@ type TAuthUser = {
     lastName: string;
     email: string;
   };
-  token: null | string;
+  accessToken: null | string;
   refreshToken: null | string;
 };
 
 const initialState: TAuthUser = {
   user: null,
-  token: null,
+  accessToken: null,
   refreshToken: null,
 };
 
@@ -26,15 +26,15 @@ export const authSlice = createSlice({
     },
 
     userLogin: (state, action) => {
-      const { user, token, refreshToken } = action.payload;
+      const { user, accessToken, refreshToken } = action.payload;
       state.user = user;
-      state.token = token;
+      state.accessToken = accessToken;
       state.refreshToken = refreshToken;
     },
 
     userLogout: (state) => {
       state.user = null;
-      state.token = null;
+      state.accessToken = null;
       state.refreshToken = null;
     },
   },

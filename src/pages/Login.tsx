@@ -22,9 +22,9 @@ const Login = () => {
     try {
       const response = await loginUser(userInfo).unwrap();
       const { user, accessToken, refreshToken } = response?.data || {};
-      // console.log(response?.data);
+      console.log(response?.data);
       if (user && accessToken && refreshToken) {
-        dispatch(userLogin({ user, token: accessToken, refreshToken }));
+        dispatch(userLogin({ user, accessToken, refreshToken }));
       } else {
         console.log("Login Failed");
       }

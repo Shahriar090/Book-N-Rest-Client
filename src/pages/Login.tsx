@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { userLogin } from "@/redux/features/auth/authSlice";
+import { toast } from "sonner";
 
 const Login = () => {
   const { register, handleSubmit } = useForm<TInputs>();
@@ -18,22 +19,36 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit: SubmitHandler<TInputs> = async (data) => {
-    const userInfo = {
-      email: data.email,
-      password: data.password,
-    };
-
+    const toastId = toast.loading("Logging In, Please Wait", {
+      duration: 3000,
+      position: "top-center",
+    });
     try {
+      const userInfo = {
+        email: data.email,
+        password: data.password,
+      };
+
       const response = await loginUser(userInfo).unwrap();
       const { user, accessToken, refreshToken } = response?.data || {};
       console.log(response?.data);
       if (user && accessToken && refreshToken) {
         dispatch(userLogin({ user, accessToken, refreshToken }));
+        toast.success("Login Successful", {
+          id: toastId,
+          duration: 3000,
+          position: "top-center",
+        });
         navigate(from, { replace: true });
       } else {
         console.log("Login Failed");
       }
     } catch (error) {
+      toast.error("Login Failed", {
+        id: toastId,
+        duration: 3000,
+        position: "top-center",
+      });
       const err = error as TErrorResponse;
       console.error(err.message);
     }

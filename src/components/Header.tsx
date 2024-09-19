@@ -4,6 +4,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { Button } from "./ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getCurrentUser, userLogout } from "@/redux/features/auth/authSlice";
+import { toast } from "sonner";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dispatch = useAppDispatch();
@@ -14,6 +15,10 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(userLogout());
+    toast.success("Logout Successful", {
+      duration: 3000,
+      position: "top-center",
+    });
   };
 
   // nav options

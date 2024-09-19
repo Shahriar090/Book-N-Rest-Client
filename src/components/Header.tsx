@@ -2,11 +2,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 import { Button } from "./ui/button";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getCurrentUser, userLogout } from "@/redux/features/auth/authSlice";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(getCurrentUser);
   const handleDrawerToggle = () => {
     setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    dispatch(userLogout());
   };
 
   // nav options
@@ -16,6 +23,7 @@ const Header = () => {
     { label: "About Us", link: "/about-us" },
     { label: "Contact", link: "/contact" },
   ];
+
   return (
     <header className="w-full h-20 bg-primary-color fixed top-0 right-0 left-0 z-50">
       <nav className="w-full h-full max-w-screen-xl mx-auto flex items-center justify-between px-2">
@@ -52,18 +60,25 @@ const Header = () => {
                   Sign In
                 </Button>
               </Link>
+              <Button onClick={handleLogout}>LogOut</Button>
             </div>
           </ul>
         </div>
         <div className="btn hidden md:block">
-          <Link to="/register">
-            <Button
-              variant="secondary"
-              className="px-8 py-4 text-primary-color font-semibold"
-            >
-              Sign Up
+          {currentUser ? (
+            <Button variant="secondary" onClick={handleLogout}>
+              LogOut
             </Button>
-          </Link>
+          ) : (
+            <Link to="/register">
+              <Button
+                variant="secondary"
+                className="px-8 py-4 text-primary-color font-semibold"
+              >
+                Sign Up
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* for small device */}

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Container from "../shared/Container";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TErrorResponse, TInputs } from "./Register";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "@/redux/hooks";
@@ -12,6 +12,10 @@ const Login = () => {
   const { register, handleSubmit } = useForm<TInputs>();
   const dispatch = useAppDispatch();
   const [loginUser, { isLoading }] = useLoginMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit: SubmitHandler<TInputs> = async (data) => {
     const userInfo = {
@@ -25,6 +29,7 @@ const Login = () => {
       console.log(response?.data);
       if (user && accessToken && refreshToken) {
         dispatch(userLogin({ user, accessToken, refreshToken }));
+        navigate(from, { replace: true });
       } else {
         console.log("Login Failed");
       }

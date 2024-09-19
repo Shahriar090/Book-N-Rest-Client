@@ -5,20 +5,50 @@ import { Button } from "./ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getCurrentUser, userLogout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
+import { useLogoutMutation } from "@/redux/features/auth/authApi";
+import { TErrorResponse } from "@/pages/Register";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [logoutUser, { isLoading }] = useLogoutMutation();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(getCurrentUser);
+
+  // drawer toggler
   const handleDrawerToggle = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
-  const handleLogout = () => {
-    dispatch(userLogout());
-    toast.success("Logout Successful", {
+  const handleLogout = async () => {
+    const toastId = toast.loading("Logging Out", {
       duration: 3000,
       position: "top-center",
     });
+    if (!currentUser?._id) {
+      toast.error("User Not Logged In", {
+        id: toastId,
+        duration: 3000,
+        position: "top-center",
+      });
+      return;
+    }
+
+    try {
+      const validUser = { id: currentUser?._id };
+      await logoutUser(validUser);
+      dispatch(userLogout());
+      toast.success("Logout Successful", {
+        id: toastId,
+        duration: 3000,
+        position: "top-center",
+      });
+    } catch (error) {
+      const err = error as TErrorResponse;
+      toast.error(err?.message, {
+        id: toastId,
+        duration: 3000,
+        position: "top-center",
+      });
+    }
   };
 
   // nav options
@@ -65,7 +95,11 @@ const Header = () => {
                   Sign In
                 </Button>
               </Link>
-              <Button onClick={handleLogout}>LogOut</Button>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <Button onClick={handleLogout}>LogOut</Button>
+              )}
             </div>
           </ul>
         </div>

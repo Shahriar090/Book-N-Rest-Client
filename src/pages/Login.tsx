@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Container from "../shared/Container";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { TErrorResponse, TInputs } from "./HomePageComponents/Register";
+import { TErrorResponse, TInputs } from "./Register";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/auth/authApi";

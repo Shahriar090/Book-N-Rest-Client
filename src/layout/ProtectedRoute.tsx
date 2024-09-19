@@ -5,9 +5,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const accessToken = useAppSelector(getCurrentToken);
-  console.log("access token from PR", accessToken);
   const location = useLocation();
-  console.log("location => ", location);
 
   if (accessToken) return children;
   return <Navigate to={"/login"} state={{ from: location }} replace />;

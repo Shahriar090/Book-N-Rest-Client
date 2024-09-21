@@ -7,9 +7,10 @@ import { getCurrentUser, userLogout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
 import { TErrorResponse } from "@/pages/Register";
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [logoutUser, { isLoading }] = useLogoutMutation();
+  const [logoutUser] = useLogoutMutation();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(getCurrentUser);
 
@@ -87,18 +88,19 @@ const Header = () => {
             ))}
 
             <div className="md:hidden">
-              <Link to="/register">
-                <Button
-                  variant="secondary"
-                  className="px-8 py-4 text-primary-color font-semibold"
-                >
-                  Sign In
+              {currentUser ? (
+                <Button onClick={handleLogout} variant="secondary">
+                  LogOut
                 </Button>
-              </Link>
-              {isLoading ? (
-                <p>Loading...</p>
               ) : (
-                <Button onClick={handleLogout}>LogOut</Button>
+                <Link to="/register">
+                  <Button
+                    variant="secondary"
+                    className="px-8 py-4 text-primary-color font-semibold"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
               )}
             </div>
           </ul>

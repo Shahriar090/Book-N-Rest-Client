@@ -150,7 +150,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* for small device */}
+        {/* small device drawer toggle icons */}
         <div className="md:hidden">
           <button
             className="text-2xl text-primary-text"

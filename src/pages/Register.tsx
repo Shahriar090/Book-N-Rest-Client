@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
 import { userRegister } from "@/redux/features/auth/authSlice";
+import { toast } from "sonner";
 
 export type TInputs = {
   firstName: string;
@@ -35,10 +36,23 @@ const Register = () => {
 
     try {
       const response = await registerUser(userInfo).unwrap();
+      const toastId = toast.loading("User Registration In Process", {
+        duration: 3000,
+        position: "top-center",
+      });
       dispatch(userRegister({ user: response.data }));
+      toast.success("User Registration Successful", {
+        id: toastId,
+        duration: 3000,
+        position: "top-center",
+      });
     } catch (error) {
       const err = error as TErrorResponse;
-      console.log(err.message);
+      toast.error("User Registration Failed", {
+        duration: 3000,
+        position: "top-center",
+      });
+      console.log(err);
     }
   };
   return (

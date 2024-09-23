@@ -92,25 +92,47 @@ const Header = () => {
                 <Link to={item.link}>{item.label}</Link>
               </li>
             ))}
-
-            <div className="md:hidden">
-              {currentUser ? (
-                <Button onClick={handleLogout} variant="secondary">
-                  LogOut
-                </Button>
-              ) : (
-                <Link to="/register">
-                  <Button
-                    variant="secondary"
-                    className="px-8 py-4 text-primary-color font-semibold"
-                  >
-                    Sign In
+            {/* login , sign in and other buttons for mobile view*/}
+            <div className="flex justify-center gap-2 items-center md:hidden">
+              <div>
+                {currentUser ? (
+                  <Button onClick={handleLogout} variant="secondary">
+                    LogOut
                   </Button>
-                </Link>
-              )}
+                ) : (
+                  <Link to="/register">
+                    <Button
+                      variant="secondary"
+                      className="px-8 py-4 text-primary-color font-semibold"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
+              </div>
+              <div>
+                {theme === "light" ? (
+                  <Button
+                    onClick={() => dispatch(toggleTheme())}
+                    variant="secondary"
+                    className="rounded-full text-lg"
+                  >
+                    <CiCloudMoon />
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => dispatch(toggleTheme())}
+                    variant="secondary"
+                    className="rounded-full text-lg"
+                  >
+                    <CiCloudSun />
+                  </Button>
+                )}
+              </div>
             </div>
           </ul>
         </div>
+        {/* login sign in and other buttons for large devices */}
         <div className="hidden md:flex items-center gap-2">
           <div>
             {currentUser ? (

@@ -7,12 +7,18 @@ import { getCurrentUser, userLogout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
 import { TErrorResponse } from "@/pages/Register";
+import { CiCloudMoon, CiCloudSun } from "react-icons/ci";
+import {
+  getCurrentTheme,
+  toggleTheme,
+} from "@/redux/features/theme/themeSlice";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoutUser] = useLogoutMutation();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(getCurrentUser);
+  const theme = useAppSelector(getCurrentTheme);
 
   // drawer toggler
   const handleDrawerToggle = () => {
@@ -61,7 +67,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full h-20 bg-primary-color fixed top-0 right-0 left-0 z-50">
+    <header className="w-full h-20 bg-primary-color dark:bg-dark-theme fixed top-0 right-0 left-0 z-50">
       <nav className="w-full h-full max-w-screen-xl mx-auto flex items-center justify-between px-2">
         {/* logo */}
         <div className="logo">
@@ -74,13 +80,13 @@ const Header = () => {
         {/* nav options */}
         <div>
           <ul
-            className={`flex flex-col md:flex-row fixed left-0 text-center md:static z-[-1] md:z-auto w-full h-auto transition-all duration-500 ease-in-out gap-6 text-primary-text text-lg font-semibold bg-primary-color py-8 md:py-0 ${
+            className={`flex flex-col md:flex-row fixed left-0 text-center md:static z-[-1] md:z-auto w-full h-auto transition-all duration-500 ease-in-out gap-6 text-primary-text text-lg font-semibold bg-primary-color md:bg-inherit py-8 md:py-0 ${
               isMobileMenuOpen ? "top-20" : "-top-[500px]"
             }`}
           >
             {navItems.map((item, index) => (
               <li
-                className="hover:text-secondary-text transition-all duration-300"
+                className="hover:text-secondary-text dark:text-primary-text transition-all duration-300"
                 key={index}
               >
                 <Link to={item.link}>{item.label}</Link>
@@ -105,21 +111,43 @@ const Header = () => {
             </div>
           </ul>
         </div>
-        <div className="btn hidden md:block">
-          {currentUser ? (
-            <Button variant="secondary" onClick={handleLogout}>
-              LogOut
-            </Button>
-          ) : (
-            <Link to="/register">
-              <Button
-                variant="secondary"
-                className="px-8 py-4 text-primary-color font-semibold"
-              >
-                Sign Up
+        <div className="hidden md:flex items-center gap-2">
+          <div>
+            {currentUser ? (
+              <Button variant="secondary" onClick={handleLogout}>
+                LogOut
               </Button>
-            </Link>
-          )}
+            ) : (
+              <Link to="/register">
+                <Button
+                  variant="secondary"
+                  className="px-8 py-4 text-primary-color font-semibold"
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            )}
+          </div>
+          {/* theme toggling */}
+          <div>
+            {theme === "light" ? (
+              <Button
+                onClick={() => dispatch(toggleTheme())}
+                variant="secondary"
+                className="rounded-full text-lg"
+              >
+                <CiCloudSun />
+              </Button>
+            ) : (
+              <Button
+                onClick={() => dispatch(toggleTheme())}
+                variant="secondary"
+                className="rounded-full text-lg"
+              >
+                <CiCloudMoon />
+              </Button>
+            )}
+          </div>
         </div>
 
         {/* for small device */}

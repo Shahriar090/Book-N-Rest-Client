@@ -44,13 +44,13 @@ const Login = () => {
         console.log("Login Failed");
       }
     } catch (error) {
-      toast.error("Login Failed", {
+      toast.error("Login Failed, Wrong Credentials!", {
         id: toastId,
         duration: 3000,
         position: "top-center",
       });
       const err = error as TErrorResponse;
-      console.error(err.message);
+      console.error(err);
     }
   };
   return (

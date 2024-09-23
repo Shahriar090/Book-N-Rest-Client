@@ -136,7 +136,7 @@ const Header = () => {
                 variant="secondary"
                 className="rounded-full text-lg"
               >
-                <CiCloudSun />
+                <CiCloudMoon />
               </Button>
             ) : (
               <Button
@@ -144,7 +144,7 @@ const Header = () => {
                 variant="secondary"
                 className="rounded-full text-lg"
               >
-                <CiCloudMoon />
+                <CiCloudSun />
               </Button>
             )}
           </div>

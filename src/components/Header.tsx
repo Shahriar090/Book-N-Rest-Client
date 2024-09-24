@@ -12,6 +12,15 @@ import {
   getCurrentTheme,
   toggleTheme,
 } from "@/redux/features/theme/themeSlice";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -136,9 +145,44 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-2">
           <div>
             {currentUser ? (
-              <Button variant="secondary" onClick={handleLogout}>
-                LogOut
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Avatar title="Click Here To See Profile Details">
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    {`User Name : ${currentUser?.firstName} ${currentUser?.lastName}`}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {`Role : ${
+                      currentUser?.isAdmin === false ? "User" : "Admin"
+                    }`}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {`Email : ${currentUser?.email}`}
+                  </DropdownMenuItem>
+                  {/* TODO : WILL BE ADDED EDIT PROFILE FUNCTIONALITY */}
+                  <DropdownMenuItem>
+                    <Button variant="secondary" size="sm" className="w-full">
+                      Edit Profile
+                    </Button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Button
+                      onClick={handleLogout}
+                      variant="destructive"
+                      size="sm"
+                      className="w-full"
+                    >
+                      LogOut
+                    </Button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Link to="/register">
                 <Button

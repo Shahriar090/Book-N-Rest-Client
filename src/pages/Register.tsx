@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Container from "@/shared/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
@@ -25,6 +25,7 @@ const Register = () => {
   const { register, handleSubmit } = useForm<TInputs>();
   const dispatch = useAppDispatch();
   const [registerUser, { isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<TInputs> = async (data) => {
     const userInfo = {
@@ -41,6 +42,7 @@ const Register = () => {
         position: "top-center",
       });
       dispatch(userRegister({ user: response.data }));
+      navigate("/login");
       toast.success("User Registration Successful", {
         id: toastId,
         duration: 3000,

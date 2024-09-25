@@ -7,12 +7,15 @@ import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
 import { userRegister } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
+import { useState } from "react";
 
 export type TInputs = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+  isAdmin: boolean;
+  avatarImage: FileList;
 };
 
 export type TErrorResponse = {
@@ -26,21 +29,29 @@ const Register = () => {
   const dispatch = useAppDispatch();
   const [registerUser, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<TInputs> = async (data) => {
-    const userInfo = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-    };
+    const toastId = toast.loading("User Registration In Process", {
+      duration: 3000,
+      position: "top-center",
+    });
+    if (!selectedFile) {
+      toast.error("Please Upload An Image For Profile");
+      return;
+    }
+
+    const userInfo = new FormData();
+    userInfo.append("firstName", data.firstName);
+    userInfo.append("lastName", data.lastName);
+    userInfo.append("email", data.email);
+    userInfo.append("password", data.password);
+    userInfo.append("avatarImage", selectedFile);
 
     try {
       const response = await registerUser(userInfo).unwrap();
-      const toastId = toast.loading("User Registration In Process", {
-        duration: 3000,
-        position: "top-center",
-      });
+
+      console.log(response);
       dispatch(userRegister({ user: response.data }));
       navigate("/login");
       toast.success("User Registration Successful", {
@@ -56,6 +67,14 @@ const Register = () => {
       });
       console.log(err);
     }
+  };
+
+  // handle file change
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    console.log(file);
+    setSelectedFile(file);
   };
   return (
     <section className="h-screen flex items-center justify-center bg-primary-text">
@@ -106,6 +125,19 @@ const Register = () => {
                 id="password"
                 className="border-black"
                 {...register("password")}
+              />
+            </div>
+            <div className="">
+              <label htmlFor="avatarImage" className="font-semibold text-black">
+                Avatar Image*
+              </label>
+              <Input
+                type="file"
+                id="avatarImage"
+                accept="image/*"
+                className="border-black"
+                {...register("avatarImage")}
+                onChange={handleFileChange}
               />
             </div>
           </div>

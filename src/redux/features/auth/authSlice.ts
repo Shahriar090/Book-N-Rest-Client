@@ -8,6 +8,7 @@ export type TAuthUser = {
     lastName: string;
     email: string;
     isAdmin: boolean;
+    avatarImage: string;
   };
   accessToken: null | string;
   refreshToken: null | string;

@@ -54,12 +54,15 @@ const Login = () => {
     }
   };
   return (
-    <section className="h-screen flex items-center justify-center bg-primary-text">
+    <section className="h-screen flex items-center justify-center bg-primary-text dark:bg-dark-theme">
       <Container>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-items grid grid-cols-1 gap-4">
             <div className="">
-              <label htmlFor="email" className="font-semibold text-black">
+              <label
+                htmlFor="email"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Email*
               </label>
               <Input
@@ -70,7 +73,10 @@ const Login = () => {
               />
             </div>
             <div className="">
-              <label htmlFor="password" className="font-semibold text-black">
+              <label
+                htmlFor="password"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Password*
               </label>
               <Input

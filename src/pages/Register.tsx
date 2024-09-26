@@ -74,65 +74,60 @@ const Register = () => {
     setSelectedFile(file);
   };
   return (
-    <section className="h-screen flex items-center justify-center bg-primary-text">
+    <section className="h-screen flex items-center justify-center bg-primary-text dark:bg-dark-theme">
       <Container>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-items grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="firstName">
-              <label htmlFor="first_Name" className="font-semibold text-black">
+              <label
+                htmlFor="first_Name"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 First Name*
               </label>
-              <Input
-                type="text"
-                id="first_Name"
-                className="border-black"
-                {...register("firstName")}
-              />
+              <Input type="text" id="first_Name" {...register("firstName")} />
             </div>
 
             <div className="lastName">
-              <label htmlFor="last_Name" className="font-semibold text-black">
+              <label
+                htmlFor="last_Name"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Last Name*
               </label>
-              <Input
-                type="text"
-                id="last_Name"
-                className="border-black"
-                {...register("lastName")}
-              />
+              <Input type="text" id="last_Name" {...register("lastName")} />
             </div>
 
             <div className="">
-              <label htmlFor="email" className="font-semibold text-black">
+              <label
+                htmlFor="email"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Email*
               </label>
-              <Input
-                type="email"
-                id="email"
-                className="border-black"
-                {...register("email")}
-              />
+              <Input type="email" id="email" {...register("email")} />
             </div>
             <div className="">
-              <label htmlFor="password" className="font-semibold text-black">
+              <label
+                htmlFor="password"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Password*
               </label>
-              <Input
-                type="password"
-                id="password"
-                className="border-black"
-                {...register("password")}
-              />
+              <Input type="password" id="password" {...register("password")} />
             </div>
             <div className="">
-              <label htmlFor="avatarImage" className="font-semibold text-black">
+              <label
+                htmlFor="avatarImage"
+                className="font-semibold text-black dark:text-secondary-text"
+              >
                 Avatar Image*
               </label>
               <Input
                 type="file"
                 id="avatarImage"
                 accept="image/*"
-                className="border-black"
+                className="border-black dark:border-secondary-text"
                 {...register("avatarImage")}
                 onChange={handleFileChange}
               />

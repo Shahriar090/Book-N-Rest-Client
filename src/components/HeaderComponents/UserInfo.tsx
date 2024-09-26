@@ -21,13 +21,13 @@ const UserInfo = () => {
   const [logoutUser] = useLogoutMutation();
   const handleLogout = async () => {
     const toastId = toast.loading("Logging Out", {
-      duration: 3000,
+      duration: 2000,
       position: "top-center",
     });
     if (!currentUser?._id) {
       toast.error("User Not Logged In", {
         id: toastId,
-        duration: 3000,
+        duration: 2000,
         position: "top-center",
       });
       return;
@@ -39,14 +39,14 @@ const UserInfo = () => {
       dispatch(userLogout());
       toast.success("Logout Successful", {
         id: toastId,
-        duration: 3000,
+        duration: 2000,
         position: "top-center",
       });
     } catch (error) {
       const err = error as TErrorResponse;
       toast.error(err?.message, {
         id: toastId,
-        duration: 3000,
+        duration: 2000,
         position: "top-center",
       });
     }
@@ -94,7 +94,7 @@ const UserInfo = () => {
         <Link to="/register">
           <Button
             variant="secondary"
-            className="px-8 py-4 text-primary-color font-semibold"
+            className="px-8 py-4 text-primary-color font-semibold dark:text-secondary-text"
           >
             Sign Up
           </Button>

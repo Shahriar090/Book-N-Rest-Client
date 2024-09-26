@@ -50,8 +50,6 @@ const Register = () => {
 
     try {
       const response = await registerUser(userInfo).unwrap();
-
-      console.log(response);
       dispatch(userRegister({ user: response.data }));
       navigate("/login");
       toast.success("User Registration Successful", {
@@ -73,7 +71,6 @@ const Register = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    console.log(file);
     setSelectedFile(file);
   };
   return (

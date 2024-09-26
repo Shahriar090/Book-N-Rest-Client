@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
         <Button
           onClick={() => dispatch(toggleTheme())}
           variant="secondary"
-          className="rounded-full text-lg"
+          className="rounded-full text-xl"
           size="sm"
         >
           <CiCloudMoon />
@@ -23,7 +23,8 @@ const ThemeSwitcher = () => {
         <Button
           onClick={() => dispatch(toggleTheme())}
           variant="secondary"
-          className="rounded-full text-lg"
+          className="rounded-full text-xl"
+          size="sm"
         >
           <CiCloudSun />
         </Button>

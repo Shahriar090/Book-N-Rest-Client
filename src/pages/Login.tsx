@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { userLogin } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const { register, handleSubmit } = useForm<TInputs>();
@@ -30,10 +31,12 @@ const Login = () => {
       };
 
       const response = await loginUser(userInfo).unwrap();
-      const { user, accessToken, refreshToken } = response?.data || {};
-      console.log(response?.data);
-      if (user && accessToken && refreshToken) {
-        dispatch(userLogin({ user, accessToken, refreshToken }));
+      const { accessToken, refreshToken } = response?.data || {};
+      // console.log(response?.data);
+      if (accessToken && refreshToken) {
+        const decodedUser = jwtDecode(accessToken);
+        // console.log(decodedUser);
+        dispatch(userLogin({ user: decodedUser, accessToken, refreshToken }));
         toast.success("Login Successful", {
           id: toastId,
           duration: 3000,

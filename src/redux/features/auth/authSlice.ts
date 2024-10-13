@@ -41,10 +41,22 @@ export const authSlice = createSlice({
       state.accessToken = null;
       state.refreshToken = null;
     },
+
+    updatedUser: (state, action) => {
+      const updatedData = action.payload.user;
+      // Merge the existing user data with the updated data
+      if (state.user) {
+        state.user = {
+          ...state.user, // retain existing properties
+          ...updatedData, // overwrite properties with the new data
+        };
+      }
+    },
   },
 });
 
-export const { userRegister, userLogin, userLogout } = authSlice.actions;
+export const { userRegister, userLogin, userLogout, updatedUser } =
+  authSlice.actions;
 
 export default authSlice.reducer;
 

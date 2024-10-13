@@ -74,9 +74,11 @@ const UserInfo = () => {
             </DropdownMenuItem>
             {/* TODO : WILL BE ADDED EDIT PROFILE FUNCTIONALITY */}
             <DropdownMenuItem>
-              <Button variant="secondary" size="sm" className="w-full">
-                Edit Profile
-              </Button>
+              <Link to="/dashboard" className="w-full">
+                <Button variant="secondary" size="sm" className="w-full">
+                  Edit Profile
+                </Button>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Button
